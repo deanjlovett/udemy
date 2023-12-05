@@ -19,4 +19,22 @@ import "fmt"
 type Part string
 
 func main() {
+	fmt.Println()
+	fmt.Println("assembly line:")
+	fmt.Println()
+
+	assemblyLine := []Part{"one", "two", "three"}
+	fmt.Println("  cmd:", "assemblyLine := []Part{\"one\",\"two\",\"three\"}")
+	fmt.Println("value:", assemblyLine)
+	fmt.Println()
+
+	assemblyLine = append(assemblyLine, "four", "five")
+	fmt.Println("  cmd:", "assemblyLine = append(assemblyLine,\"four\",\"five\")")
+	fmt.Println("value:", assemblyLine)
+	fmt.Println()
+
+	assemblyLine = assemblyLine[3:]
+	fmt.Println("  cmd:", "assemblyLine = assemblyLine[3:]")
+	fmt.Println("value:", assemblyLine)
+	fmt.Println()
 }

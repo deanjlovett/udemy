@@ -17,7 +17,7 @@ package main
 import "fmt"
 import "time"
 import "math/rand"
-// import "sync"
+import "sync"
 
 type Job int
 
@@ -48,11 +48,11 @@ type Result struct {
 func runJob(
 	job Job, 
 	results chan <- Result,
-	// wg *sync.WaitGroup,
+	wg *sync.WaitGroup,
 	//control chan    ControlMsg,
 ){
-	// wg.Add(1)
-	// defer wg.Done()
+	wg.Add(1)
+	defer wg.Done()
 	results <- Result{longCalculation(job),job}
 }
 
@@ -68,19 +68,21 @@ func main() {
 	// rand.Seed(time.Now().UnixNano())
 	jobs := makeJobs()
 	results := make(chan Result, 100)
-	// var wg sync.WaitGroup
+	var wg sync.WaitGroup
 	m := make(map[Job] int)
 	for idx,job := range jobs {
 		fmt.Printf("  idx: %v runJob(job:%v,results,wv)\n",idx+1,job)
 		m[Job(job)]=idx
-		go runJob(job,results)//,&wg)
+		go runJob(job,results,&wg)
 	}
 	sum := 0
 	rmsgMissCount := 0
 	waitCount := 1
 	waitTotal := 0
 	// outerFor:
-	for len(m)!=0 {
+	// for len(m)!=0 {
+	count := 100
+	for count>0 {
 		select{
 		case rmsg := <- results:
 			if waitCount>1{
@@ -93,9 +95,11 @@ func main() {
 			_,ok:=m[rmsg.job]
 			if ok{
 				sum += rmsg.result
-				
-				delete(m,rmsg.job)
-				fmt.Println("    len(m):", len(m), "msg:",rmsg)
+				count--
+				fmt.Println("    thread remaining:", count)
+
+				// delete(m,rmsg.job)
+				// fmt.Println("    len(m):", len(m), "msg:",rmsg)
 			}
 		default:
 			//rmsgMissPrev = rmsgMissCount
@@ -114,6 +118,6 @@ func main() {
 
 		}
 	}
-	//wg.Wait()
+	wg.Wait()
 	fmt.Println("sum:",sum)
 }

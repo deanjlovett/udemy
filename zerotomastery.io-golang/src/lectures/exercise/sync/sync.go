@@ -20,6 +20,68 @@ package main
 
 import (
 	"fmt"
+
+	"os"
+	"bufio"
+	"strings"
+	"sync"
+	"unicode"
+
 )
 
-func main() {}
+func numberOfLetters(w string) int {
+	n := 0
+	for _, aRune := range w {
+		if unicode.IsLetter(aRune){
+			n++
+		}
+	}
+	return n
+}
+
+type LetterCount struct {
+	count int
+	sync.Mutex
+}
+func (lc *LetterCount)get()int{
+	lc.Lock()
+	defer lc.Unlock()
+	return lc.count
+}
+func (lc *LetterCount)add(n int){
+	lc.Lock()
+	defer lc.Unlock()
+	lc.count += n
+}
+
+
+func main() {
+
+	var wg sync.WaitGroup
+	myscanner := bufio.NewScanner(os.Stdin)
+
+	letterCount := LetterCount{}
+
+	for {
+		if myscanner.Scan() {
+			aLine := myscanner.Text()
+			words := strings.Split(aLine, " ")
+			for _, word := range words {
+				myword := word
+				wg.Add(1)
+				//* Input analysis must occur per-word, and each word must be analyzed
+				//  within a goroutine
+				go func() {
+					defer wg.Done()
+					letterCount.add(numberOfLetters(myword))
+				}()
+			} 
+		} else {
+			if myscanner.Err() == nil {
+				break 
+			}
+		}
+	}
+	wg.Wait()
+	fmt.Println("Total number of letters:", letterCount.get())
+}

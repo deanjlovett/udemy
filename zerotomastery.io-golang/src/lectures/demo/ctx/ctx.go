@@ -44,11 +44,13 @@ MainLoop:
 		select {
 		case val := <-webServer:
 			fmt.Println(val)
+
 		case val := <-microservice:
 			fmt.Println(val)
 			fmt.Println("cancel context")
 			cancelCtx()
 			break MainLoop
+			
 		case val := <-database:
 			fmt.Println(val)
 		}

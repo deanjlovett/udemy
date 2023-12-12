@@ -1,17 +1,12 @@
 package main
 
 import (
-	// "context"
 	"bufio"
 	"fmt"
-	// "time"
 	"log"
-	// "math/rand"
 	"os"
-	// "path/filepath" // filepath.Walk
 	"strings"
 	"sync"
-	// "time"
 )
 
 // func mywait(delay int) {
@@ -28,7 +23,9 @@ func optionParDir(folder, match string, parentwg *sync.WaitGroup) {
 		fmt.Println(err)
 	} else {
 		for _, f := range files {
-			filename := folder + "/" + f.Name()
+			// filename := folder + "/" + f.Name()
+			filename := folder + string(os.PathSeparator) + f.Name() 
+
 			wg.Add(1)
 			if f.IsDir() {
 				go optionParDir(filename,match,&wg)
@@ -80,7 +77,8 @@ func optionOneFile(filename, match string, wg *sync.WaitGroup) {
 		line := scanner.Text()
 		if strings.Contains(line,match) {
 			fmt.Printf(
-				"Line#:%v, File:%v, Matching line:%v\n\n",
+				// "Line#: %v, File: %v, Matching line: %v\n\n",
+				"Line#: %v\nFile: %v\nMatching line: %v\n\n",
 				linenumber,
 				filename,
 				line,

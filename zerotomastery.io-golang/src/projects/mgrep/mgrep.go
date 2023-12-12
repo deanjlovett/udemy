@@ -6,17 +6,17 @@ import (
 	"fmt"
 	// "time"
 	"log"
-	"math/rand"
+	// "math/rand"
 	"os"
-	"path/filepath" // filepath.Walk
+	// "path/filepath" // filepath.Walk
 	"strings"
 	"sync"
-	"time"
+	// "time"
 )
 
-func mywait(delay int) {
-	time.Sleep(time.Duration(rand.Intn(delay)) * time.Millisecond)
-}
+// func mywait(delay int) {
+// 	time.Sleep(time.Duration(rand.Intn(delay)) * time.Millisecond)
+// }
 
 func optionParDir(folder, match string, parentwg *sync.WaitGroup) {
 	defer parentwg.Done()
@@ -26,14 +26,15 @@ func optionParDir(folder, match string, parentwg *sync.WaitGroup) {
 	files, err := os.ReadDir(folder)
 	if err != nil {
 		fmt.Println(err)
-	}
-	for _, f := range files {
-		filename := folder + "/" + f.Name()
-		wg.Add(1)
-		if f.IsDir() {
-			go optionParDir(filename,match,&wg)
-		} else {
-			go optionOneFile(filename,match,&wg)
+	} else {
+		for _, f := range files {
+			filename := folder + "/" + f.Name()
+			wg.Add(1)
+			if f.IsDir() {
+				go optionParDir(filename,match,&wg)
+			} else {
+				go optionOneFile(filename,match,&wg)
+			}
 		}
 	}
 	wg.Wait()
@@ -47,9 +48,12 @@ func optionOneDir(folder, match string, wg *sync.WaitGroup) {
 	files, err := os.ReadDir(folder)
 	if err != nil {
 		fmt.Println(err)
+		return
 	}
 	for _, f := range files {
-		filename := folder + "/" + f.Name()
+		// filename := folder + "/" + f.Name() // << works for Mac OS & Linux
+		// filename := fmt.Sprintf("%v%v%v",folder,os.PathSeparator,f.Name())
+		filename := folder + string(os.PathSeparator) + f.Name() 
 		wg.Add(1)
 		if f.IsDir() {
 			go optionOneDir(filename,match,wg)
@@ -60,9 +64,11 @@ func optionOneDir(folder, match string, wg *sync.WaitGroup) {
 }
 func optionOneFile(filename, match string, wg *sync.WaitGroup) {
 	defer wg.Done()
+
 	file, err := os.Open(filename)
     if err != nil {
         log.Fatal(err)
+		return
     }
     defer file.Close()
 
@@ -98,63 +104,6 @@ func mainOptionOne(searchStr, searchDir string){
 	fmt.Println()
 }
 
-func mainOptionTwo(searchStr, searchDir string) {
-	fmt.Println()
-	fmt.Println("===========================")
-	fmt.Println("Option 2: filepath.Walk")
-	fmt.Println()
-
-
-	var wg sync.WaitGroup
-
-	searchFile := func( path string, match string, wg *sync.WaitGroup) <-chan string{
-		defer wg.Done()
-		out := make(chan string)
-		out <- fmt.Sprintf("looking for {%v} in file {%v}\n",match,path)
-		mywait(100)
-		return out
-	}
-	refunc := func( path string, info os.FileInfo, err error ) error {
-		if err != nil {
-			return err
-		}
-		isDirStr := func(isDir bool) string {
-			if isDir { return "D" } else { return "_"}
-		}
-		fmt.Println(isDirStr(info.IsDir()), path, info.Size())
-		go searchFile(path,searchStr,&wg)
-		return nil
-	}
-
-	err := filepath.Walk( searchDir, refunc )
-	// 	func(
-	// 		path string, 
-	// 		info os.FileInfo, 
-	// 		err error,
-	// 	) error {
-	// 		if err != nil {
-	// 			return err
-	// 		}
-	// 		fmt.Println(path, info.Size())
-	// 		return nil
-	// 	},
-	// )
-	if err != nil {
-		fmt.Println(err)
-	}
-}
-
-func mainOptionThree(searchStr, searchDir string){
-	
-	fmt.Println()
-	fmt.Println("===========================")
-	fmt.Println("Option 3: os.File.Readdir")
-	fmt.Println()
-
-}
-
-
-
 func main(){
 
 	if len(os.Args)<3 {
@@ -166,19 +115,9 @@ func main(){
 	fmt.Println("searchStr:", searchStr)
 	fmt.Println("searchDir:", searchDir)
 	fmt.Println()
-	fmt.Println()
 	fmt.Println("===========================") 
-	fmt.Println("from...")
-	fmt.Println("https://golang.cafe/blog/how-to-list-files-in-a-directory-in-go.html")
 	fmt.Println()
-
-	
 	
 	mainOptionOne(searchStr, searchDir)
-
-	// mainOptionTwo(searchStr, searchDir)
-
-	// mainOptionThree(searchStr, searchDir)
-
 
 }

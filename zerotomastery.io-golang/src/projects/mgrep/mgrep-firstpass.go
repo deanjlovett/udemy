@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"slices"
 	"strings"
 	"sync"
 )
@@ -12,6 +13,9 @@ import (
 // func mywait(delay int) {
 // 	time.Sleep(time.Duration(rand.Intn(delay)) * time.Millisecond)
 // }
+
+// create a new WaitGroup to be used by child threads / go routines
+// wait for child threads to finish before leaving method
 
 func optionParDir(folder, match string, parentwg *sync.WaitGroup) {
 	defer parentwg.Done()
@@ -39,6 +43,9 @@ func optionParDir(folder, match string, parentwg *sync.WaitGroup) {
 
 }
 
+// new child threads - go routines us WaitGroup passed in
+// do not wait in this method for child threads to complete
+//
 func optionOneDir(folder, match string, wg *sync.WaitGroup) {
 	defer wg.Done()
 
@@ -59,6 +66,7 @@ func optionOneDir(folder, match string, wg *sync.WaitGroup) {
 		}
 	}
 }
+
 func optionOneFile(filename, match string, wg *sync.WaitGroup) {
 	defer wg.Done()
 
@@ -78,9 +86,13 @@ func optionOneFile(filename, match string, wg *sync.WaitGroup) {
 		if strings.Contains(line,match) {
 			fmt.Printf(
 				// "Line#: %v, File: %v, Matching line: %v\n\n",
-				"Line#: %v\nFile: %v\nMatching line: %v\n\n",
-				linenumber,
+				// "       Line #: %v\n         File: %v\nMatching Text: %v\n\n",
+				// linenumber,
+				// filename,
+				// line,
+				"%v[%v]:%v\n",
 				filename,
+				linenumber,
 				line,
 			)
 		}
@@ -95,6 +107,16 @@ func optionOneFile(filename, match string, wg *sync.WaitGroup) {
 
 
 func mainOptionOne(searchStr, searchDir string){
+
+	fmt.Println("===========================") 
+	fmt.Println("===========================") 
+	fmt.Println()
+	fmt.Println("searchStr:", searchStr)
+	fmt.Println("searchDir:", searchDir)
+	fmt.Println()
+	fmt.Println("===========================") 
+	fmt.Println()
+
 	var wg sync.WaitGroup
 	wg.Add(1)
 	go optionParDir(searchDir, searchStr, &wg)
@@ -104,18 +126,63 @@ func mainOptionOne(searchStr, searchDir string){
 
 func main(){
 
-	if len(os.Args)<3 {
-		return
+	helpFlags := []string {"-h","-?","--help"}
+	usage := "\nusage mgrep search_string [folder ... ]\n"
+	checkForHelpFlag := func (searchStr string)bool{
+		if slices.Contains(helpFlags,strings.ToLower(searchStr)) {
+			return true //os.Exit(0)
+		}
+		return false
 	}
-	searchStr := os.Args[1]
-	searchDir := os.Args[2]
-	fmt.Println()
-	fmt.Println("searchStr:", searchStr)
-	fmt.Println("searchDir:", searchDir)
-	fmt.Println()
-	fmt.Println("===========================") 
-	fmt.Println()
-	
-	mainOptionOne(searchStr, searchDir)
 
+	searchStr := ""
+	fmt.Println("len(os.Args):",len(os.Args),os.Args)
+	fmt.Println()
+	if len(os.Args)<=1 {
+		fmt.Println("\n   need to provide at least provide a search string.")
+		fmt.Println(usage)
+	} else if len(os.Args) == 2 {
+		searchStr = os.Args[1]
+		if checkForHelpFlag(searchStr) {
+			fmt.Println(usage)
+			os.Exit(0)
+		}
+		mainOptionOne(searchStr, ".")
+	} else {
+		searchStr       = os.Args[1]
+		searchArray := os.Args[1:]
+		for _,aString := range searchArray {
+			if checkForHelpFlag(aString) {
+				fmt.Println(usage)
+				os.Exit(0)
+			}
+		}
+		searchDirArray := os.Args[2:]
+		for _,searchDir := range searchDirArray {
+			mainOptionOne(searchStr, searchDir)
+		}
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

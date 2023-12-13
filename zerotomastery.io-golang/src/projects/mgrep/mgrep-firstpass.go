@@ -20,14 +20,12 @@ import (
 func optionParDir(folder, match string, parentwg *sync.WaitGroup) {
 	defer parentwg.Done()
 	var wg sync.WaitGroup
-	// fmt.Printf("searching folder: %v ... start ...\n",folder)
 
 	files, err := os.ReadDir(folder)
 	if err != nil {
 		fmt.Println(err)
 	} else {
 		for _, f := range files {
-			// filename := folder + "/" + f.Name()
 			filename := folder + string(os.PathSeparator) + f.Name() 
 
 			wg.Add(1)
@@ -39,8 +37,6 @@ func optionParDir(folder, match string, parentwg *sync.WaitGroup) {
 		}
 	}
 	wg.Wait()
-	// fmt.Printf("searching folder: %v ... stop ...\n",folder)
-
 }
 
 // new child threads - go routines us WaitGroup passed in
@@ -55,8 +51,6 @@ func optionOneDir(folder, match string, wg *sync.WaitGroup) {
 		return
 	}
 	for _, f := range files {
-		// filename := folder + "/" + f.Name() // << works for Mac OS & Linux
-		// filename := fmt.Sprintf("%v%v%v",folder,os.PathSeparator,f.Name())
 		filename := folder + string(os.PathSeparator) + f.Name() 
 		wg.Add(1)
 		if f.IsDir() {
@@ -84,22 +78,9 @@ func optionOneFile(filename, match string, wg *sync.WaitGroup) {
 		linenumber++
 		line := scanner.Text()
 		if strings.Contains(line,match) {
-			fmt.Printf(
-				// "Line#: %v, File: %v, Matching line: %v\n\n",
-				// "       Line #: %v\n         File: %v\nMatching Text: %v\n\n",
-				// linenumber,
-				// filename,
-				// line,
-				"%v[%v]:%v\n",
-				filename,
-				linenumber,
-				line,
-			)
+			fmt.Printf( "%v[%v]:%v\n", filename, linenumber, line )
 		}
     }
-	// mywait(100)
-	// fmt.Printf("searching file: %v for %v complete !\n",filename,match)
-
     if err := scanner.Err(); err != nil {
         log.Fatal(err)
     }
@@ -163,26 +144,3 @@ func main(){
 		}
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -1,0 +1,79 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-b3cab03530542e53e991.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "blank-qt-console-app",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "blank-qt-console-app::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-blank-qt-console-app-Debug-9ae6d4520184df52793c.json",
+					"name" : "blank-qt-console-app",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "blank-qt-console-app_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-blank-qt-console-app_autogen-Debug-aa93aababf26ac3f096e.json",
+					"name" : "blank-qt-console-app_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "blank-qt-console-app_autogen_timestamp_deps::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-blank-qt-console-app_autogen_timestamp_deps-Debug-fa4a6c6a51bb4ef09307.json",
+					"name" : "blank-qt-console-app_autogen_timestamp_deps",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/Users/dean/Desktop/sdcs/github-projects/udemy/qt-6-core-beginners/section-2-assignment-2/blank-qt-console-app/build/Qt_6_7_2_for_macOS-Debug",
+		"source" : "/Users/dean/Desktop/sdcs/github-projects/udemy/qt-6-core-beginners/section-2-assignment-2/blank-qt-console-app"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 7
+	}
+}

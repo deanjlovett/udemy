@@ -1,0 +1,9 @@
+/Users/dean/Desktop/sdcs/github-projects/udemy/qt-6-core-beginners/qt6cb-3-01/build/Qt_6_6_2_for_macOS-Debug/CMakeFiles/qt6cb-3-01.dir
+/Users/dean/Desktop/sdcs/github-projects/udemy/qt-6-core-beginners/qt6cb-3-01/build/Qt_6_6_2_for_macOS-Debug/CMakeFiles/edit_cache.dir
+/Users/dean/Desktop/sdcs/github-projects/udemy/qt-6-core-beginners/qt6cb-3-01/build/Qt_6_6_2_for_macOS-Debug/CMakeFiles/rebuild_cache.dir
+/Users/dean/Desktop/sdcs/github-projects/udemy/qt-6-core-beginners/qt6cb-3-01/build/Qt_6_6_2_for_macOS-Debug/CMakeFiles/list_install_components.dir
+/Users/dean/Desktop/sdcs/github-projects/udemy/qt-6-core-beginners/qt6cb-3-01/build/Qt_6_6_2_for_macOS-Debug/CMakeFiles/install.dir
+/Users/dean/Desktop/sdcs/github-projects/udemy/qt-6-core-beginners/qt6cb-3-01/build/Qt_6_6_2_for_macOS-Debug/CMakeFiles/install/local.dir
+/Users/dean/Desktop/sdcs/github-projects/udemy/qt-6-core-beginners/qt6cb-3-01/build/Qt_6_6_2_for_macOS-Debug/CMakeFiles/install/strip.dir
+/Users/dean/Desktop/sdcs/github-projects/udemy/qt-6-core-beginners/qt6cb-3-01/build/Qt_6_6_2_for_macOS-Debug/CMakeFiles/qt6cb-3-01_autogen_timestamp_deps.dir
+/Users/dean/Desktop/sdcs/github-projects/udemy/qt-6-core-beginners/qt6cb-3-01/build/Qt_6_6_2_for_macOS-Debug/CMakeFiles/qt6cb-3-01_autogen.dir

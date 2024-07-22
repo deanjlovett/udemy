@@ -1,5 +1,5 @@
 #include <QCoreApplication>
-#include <QDebug>
+#include <QDebug> // <<== might already be in QCoreApplication
 
 int main(int argc, char *argv[])
 {

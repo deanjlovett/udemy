@@ -6,6 +6,7 @@
 
 class Radio : public QObject
 {
+private:
     Q_OBJECT
 
 public:

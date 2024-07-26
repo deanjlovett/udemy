@@ -24,16 +24,23 @@ int main(int argc, char *argv[])
 
     //todo: replace with a collection
 
-    std::vector<Station*> channels;
-    channels.push_back( new Station(&boombox,  94, "Rock & Roll") );
-    channels.push_back( new Station(&boombox,  87, "Hip Hop") );
-    channels.push_back( new Station(&boombox, 104, "News") );
+    struct pallet{
+        Station * _pc;
+        bool _isConnected;
+        pallet(Station* pc):_pc(pc),_isConnected(false){}
+        QString toString(){return _pc!=nullptr ? _pc->toString() : "empty";}
+        void broadcast(const QString& msg){ if(_pc!=nullptr) _pc->broadcast(msg);}
+    };
+    std::vector<pallet> channels;
+    channels.push_back( pallet{new Station(&boombox,  94, "Rock & Roll")} );
+    channels.push_back( pallet{new Station(&boombox,  87, "Hip Hop")} );
+    channels.push_back( pallet{new Station(&boombox, 104, "News") });
 
-    boombox.connect( &boombox, &Radio::quit, &a, &QCoreApplication::quit );
+    boombox.connect( &boombox, &Radio::quit, &a, &QCoreApplication::quit, Qt::QueuedConnection );
 
-    for( auto &pc : channels )
+    for( auto &pallet : channels )
     {
-        boombox.connect(pc, &Station::send, &boombox, &Radio::listen);
+        boombox.connect(pallet._pc, &Station::send, &boombox, &Radio::listen);
     }
 
     // for(int i = 0; i<3; i++)
@@ -44,39 +51,86 @@ int main(int argc, char *argv[])
 
     do
     {
-        qInfo() << "Enter on, off, test, or quit";
+        qInfo() << "Enter on, off, test, list, or quit";
         QTextStream qtin(stdin);
         QString line = qtin.readLine().trimmed().toUpper();
+        const QString
+            sHELP{"HELP"},
+            sLIST{"LIST"},
+            sTEST{"TEST"},
+            sON{"ON"},
+            sCONNECT("CONNECT"),
+            sOFF{"OFF"},
+            sDISCONNECT("DISCONNECT"),
+            sQUIT{"QUIT"};
 
-        if( line == "T" || line.mid(0,3)=="TEST")
+        if( sTEST.contains(line) || line == "3")
         {
             qInfo() << "Testing";
-            for( auto &pc : channels )
+            for( auto &pallet : channels )
             {
-                pc->broadcast("Broadcasting live!");
+                pallet._pc->broadcast("Broadcasting live!");
             }
+            qInfo() << "";
         }
-        else if(line == "1" || line.mid(0,1)=="ON")
+        else if(sLIST.contains(line) || line == "2" )
         {
-            qInfo() << "Turning the radio on";
-            for( auto &pc : channels )
+            qInfo() << "List of channels:";
+            for( auto &pallet : channels )
             {
-                boombox.connect(pc, &Station::send, &boombox, &Radio::listen);
+                qInfo() <<  pallet._pc->channel << " " << pallet._pc->name
+                        << ", isConnected?: " << pallet._isConnected;
             }
+            qInfo() << "";
+
         }
-        else if(line == "0" || line == "OFF" || line.mid(0,2)=="OFF")
+        else if(sON.contains(line) || sCONNECT.contains(line) || line == "1" )
+        {
+            qInfo();
+            qInfo() << "Turning the radio on";
+            for( auto &pallet : channels )
+            {
+                if(pallet._isConnected){
+                    qInfo() << "  channel: " << pallet._pc->toString() <<" is already connected.";
+                }else{
+                    boombox.connect(pallet._pc, &Station::send, &boombox, &Radio::listen);
+                    qInfo() << "  connecting: " << pallet._pc->toString();
+                    pallet._isConnected = true;
+                }
+                boombox.connect(pallet._pc, &Station::send, &boombox, &Radio::listen);
+            }
+            qInfo() << "";
+        }
+        else if(sOFF.contains(line) || sDISCONNECT.contains(line)|| line == "0") // off
         {
             qInfo() << "Turning the radio off";
-            for( auto &pc : channels )
+            for( auto &pallet : channels )
             {
-                boombox.disconnect(pc, &Station::send, &boombox, &Radio::listen);
+                qInfo() << "  disconnecting: " << pallet._pc->toString();
+
+                boombox.disconnect(pallet._pc, &Station::send, &boombox, &Radio::listen);
+                pallet._isConnected = false;
+
             }
+            qInfo() << "";
         }
-        else if(line == "Q" || line == "QUIT" || line.mid(0,3)=="QUIT")
+        else if(sQUIT.contains(line) || line == "4")
         {
             qInfo() << "Quitting";
             emit boombox.quit();
             break;
+        }
+        else if(sHELP.contains(line) || line == "9")
+        {
+            qInfo() << "";
+            qInfo() << "commands:";
+            qInfo() << "  help: displays this text";
+            qInfo() << "    on:   connects";
+            qInfo() << "   off: diconnects";
+            qInfo() << "  test: displays test msg";
+            qInfo() << "  list: displays list of channels";
+            qInfo() << "  quit: quits this program";
+            qInfo() << "";
         }
         else
         {

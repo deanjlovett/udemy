@@ -6,6 +6,7 @@
 
 class Station : public QObject
 {
+private:
     Q_OBJECT
 
 public:
@@ -21,12 +22,13 @@ public:
 
     // QString getName() const;
     // void setName(const QString &newName);
+    QString toString();
 
 signals:
     void send(int channel, const QString& name, const QString& msg);
 
 public slots:
-    void broadcast(QString msg);
+    void broadcast(const QString& msg);
 
 };
 

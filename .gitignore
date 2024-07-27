@@ -22,6 +22,9 @@ Thumbs.db
 # the usual suspects for 
 node_modules
 
+# a folder created for Qt (pronounced CUTE not CUTIE or not Que Tea )
+build
+
 # other odds and ends
 *scratch*
 Complete-Python-3-Bootcamp

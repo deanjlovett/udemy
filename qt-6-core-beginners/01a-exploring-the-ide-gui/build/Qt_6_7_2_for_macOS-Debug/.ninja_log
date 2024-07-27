@@ -1,9 +1,0 @@
-# ninja log v6
-4	941	1720992050743162924	01a-exploring-the-ide-gui_autogen/timestamp	93808dd1507c1ef9
-4	941	1720992050743162924	01a-exploring-the-ide-gui_autogen/mocs_compilation.cpp	93808dd1507c1ef9
-4	941	1720992050743162924	/Users/dean/Desktop/sdcs/github-projects/udemy/qt-6-core-beginners/01a-exploring-the-ide-gui/build/Qt_6_7_2_for_macOS-Debug/01a-exploring-the-ide-gui_autogen/timestamp	93808dd1507c1ef9
-4	941	1720992050743162924	/Users/dean/Desktop/sdcs/github-projects/udemy/qt-6-core-beginners/01a-exploring-the-ide-gui/build/Qt_6_7_2_for_macOS-Debug/01a-exploring-the-ide-gui_autogen/mocs_compilation.cpp	93808dd1507c1ef9
-945	5780	1720992050817426092	CMakeFiles/01a-exploring-the-ide-gui.dir/01a-exploring-the-ide-gui_autogen/mocs_compilation.cpp.o	6d87b77c1a6ea564
-945	5786	1720992050817959359	CMakeFiles/01a-exploring-the-ide-gui.dir/main.cpp.o	605a3cb01e35925f
-946	5853	1720992050818876144	CMakeFiles/01a-exploring-the-ide-gui.dir/mainwindow.cpp.o	1b4a87a4e2848a59
-5854	6298	1720992055726358248	01a-exploring-the-ide-gui.app/Contents/MacOS/01a-exploring-the-ide-gui	c7e5d76cd5503d7d

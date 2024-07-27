@@ -1,9 +1,0 @@
-/Users/dean/Desktop/sdcs/github-projects/udemy/qt-6-core-beginners/01a-exploring-the-ide-gui/build/Qt_6_7_2_for_macOS-Debug/CMakeFiles/01a-exploring-the-ide-gui.dir
-/Users/dean/Desktop/sdcs/github-projects/udemy/qt-6-core-beginners/01a-exploring-the-ide-gui/build/Qt_6_7_2_for_macOS-Debug/CMakeFiles/edit_cache.dir
-/Users/dean/Desktop/sdcs/github-projects/udemy/qt-6-core-beginners/01a-exploring-the-ide-gui/build/Qt_6_7_2_for_macOS-Debug/CMakeFiles/rebuild_cache.dir
-/Users/dean/Desktop/sdcs/github-projects/udemy/qt-6-core-beginners/01a-exploring-the-ide-gui/build/Qt_6_7_2_for_macOS-Debug/CMakeFiles/list_install_components.dir
-/Users/dean/Desktop/sdcs/github-projects/udemy/qt-6-core-beginners/01a-exploring-the-ide-gui/build/Qt_6_7_2_for_macOS-Debug/CMakeFiles/install.dir
-/Users/dean/Desktop/sdcs/github-projects/udemy/qt-6-core-beginners/01a-exploring-the-ide-gui/build/Qt_6_7_2_for_macOS-Debug/CMakeFiles/install/local.dir
-/Users/dean/Desktop/sdcs/github-projects/udemy/qt-6-core-beginners/01a-exploring-the-ide-gui/build/Qt_6_7_2_for_macOS-Debug/CMakeFiles/install/strip.dir
-/Users/dean/Desktop/sdcs/github-projects/udemy/qt-6-core-beginners/01a-exploring-the-ide-gui/build/Qt_6_7_2_for_macOS-Debug/CMakeFiles/01a-exploring-the-ide-gui_autogen_timestamp_deps.dir
-/Users/dean/Desktop/sdcs/github-projects/udemy/qt-6-core-beginners/01a-exploring-the-ide-gui/build/Qt_6_7_2_for_macOS-Debug/CMakeFiles/01a-exploring-the-ide-gui_autogen.dir

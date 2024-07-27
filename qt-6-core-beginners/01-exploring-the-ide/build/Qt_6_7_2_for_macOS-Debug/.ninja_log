@@ -1,8 +1,0 @@
-# ninja log v6
-3	849	1720991645067247515	01-exploring-the-ide_autogen/timestamp	dc7d7528a132a0be
-3	849	1720991645067247515	01-exploring-the-ide_autogen/mocs_compilation.cpp	dc7d7528a132a0be
-3	849	1720991645067247515	/Users/dean/Desktop/sdcs/github-projects/udemy/qt-6-core-beginners/01-exploring-the-ide/build/Qt_6_7_2_for_macOS-Debug/01-exploring-the-ide_autogen/timestamp	dc7d7528a132a0be
-3	849	1720991645067247515	/Users/dean/Desktop/sdcs/github-projects/udemy/qt-6-core-beginners/01-exploring-the-ide/build/Qt_6_7_2_for_macOS-Debug/01-exploring-the-ide_autogen/mocs_compilation.cpp	dc7d7528a132a0be
-851	1141	1720991645108665635	CMakeFiles/01-exploring-the-ide.dir/01-exploring-the-ide_autogen/mocs_compilation.cpp.o	239cfe58aef064c3
-851	4563	1720991645109070411	CMakeFiles/01-exploring-the-ide.dir/main.cpp.o	e4c1ed91186af339
-4568	4745	1720991648825287031	01-exploring-the-ide	a237bd835a566deb

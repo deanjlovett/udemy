@@ -28,3 +28,11 @@ build
 # other odds and ends
 *scratch*
 Complete-Python-3-Bootcamp
+
+
+# build stuff & caches
+build
+build/*
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake

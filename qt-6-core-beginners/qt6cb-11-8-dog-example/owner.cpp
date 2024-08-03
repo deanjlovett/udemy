@@ -8,6 +8,6 @@ Owner::Owner(QObject *parent)
 
 void Owner::giveTreat()
 {
-    qInfo() << "giveTreat: snacks are ready";
+    qInfo() << "Owner::giveTreat(), snacks are ready";
     emit treat();
 }

@@ -6,5 +6,5 @@ Dog::Dog(QObject *parent)
 
 void Dog::treat()
 {
-    qInfo() << "Dog::treat()";
+    qInfo() << "Dog::treat(), woof";
 }

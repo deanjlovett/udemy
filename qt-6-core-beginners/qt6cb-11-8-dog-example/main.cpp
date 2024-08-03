@@ -1,4 +1,5 @@
 #include <QCoreApplication>
+#include <QDebug>
 
 #include "owner.h"
 #include "dog.h"
@@ -21,12 +22,20 @@ int main(int argc, char *argv[])
     Owner owner;
     Dog dog;
 
+    QMetaObject::Connection cc1 =
     QObject::connect(
         &owner,
         &Owner::treat,
         &dog,
         &Dog::treat
     ); // default Auto
+
+    qInfo() << "is connection #1 valid? " << (static_cast<bool>(cc1));
+
+    QMetaObject::Connection cc2 =
+    QObject::connect( &owner, &Owner::treat, &dog, &Dog::treat,  Qt::UniqueConnection); // default Auto
+
+    qInfo() << "is connection #2 valid? " << (static_cast<bool>(cc2));
 
     owner.giveTreat();
 

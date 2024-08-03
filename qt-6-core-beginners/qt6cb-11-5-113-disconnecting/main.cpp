@@ -62,6 +62,7 @@ int main(int argc, char *argv[])
             sCONNECT("CONNECT"),
             sOFF{"OFF"},
             sDISCONNECT("DISCONNECT"),
+            sEXIT{"EXIT"},
             sQUIT{"QUIT"};
 
         if( sTEST.contains(line) || line == "3")
@@ -114,13 +115,13 @@ int main(int argc, char *argv[])
             }
             qInfo() << "";
         }
-        else if(sQUIT.contains(line) || line == "4")
+        else if(sQUIT.contains(line) || sEXIT.contains(line) || line == "4")
         {
             qInfo() << "Quitting";
             emit boombox.quit();
             break;
         }
-        else if(sHELP.contains(line) || line == "9")
+        else if(sHELP.contains(line) || line == "?" || line == "9")
         {
             qInfo() << "";
             qInfo() << "commands:";

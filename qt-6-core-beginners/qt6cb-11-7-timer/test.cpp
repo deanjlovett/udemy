@@ -25,5 +25,7 @@ void Test::timeout()
 
     if( m_count >= 4 ) {
         m_timer.stop();
+        qInfo() << "Test: timeout calls stoped after Count: " << m_count;
+
     }
 }

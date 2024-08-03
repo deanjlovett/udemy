@@ -45,8 +45,8 @@
 #define __DECIMAL_DIG__ __LDBL_DECIMAL_DIG__
 #define __DEPRECATED 1
 #define __DYNAMIC__ 1
-#define __ENVIRONMENT_MAC_OS_X_VERSION_MIN_REQUIRED__ 130000
-#define __ENVIRONMENT_OS_VERSION_MIN_REQUIRED__ 130000
+#define __ENVIRONMENT_MAC_OS_X_VERSION_MIN_REQUIRED__ 140000
+#define __ENVIRONMENT_OS_VERSION_MIN_REQUIRED__ 140000
 #define __EXCEPTIONS 1
 #define __FINITE_MATH_ONLY__ 0
 #define __FLT16_DECIMAL_DIG__ 5
@@ -359,7 +359,7 @@
 #define __UINT_LEAST8_MAX__ 255
 #define __UINT_LEAST8_TYPE__ unsigned char
 #define __USER_LABEL_PREFIX__ _
-#define __VERSION__ "Apple LLVM 15.0.0 (clang-1500.1.0.2.5)"
+#define __VERSION__ "Apple LLVM 15.0.0 (clang-1500.3.9.4)"
 #define __WCHAR_MAX__ 2147483647
 #define __WCHAR_TYPE__ int
 #define __WCHAR_WIDTH__ 32
@@ -368,14 +368,14 @@
 #define __WINT_WIDTH__ 32
 #define __amd64 1
 #define __amd64__ 1
-#define __apple_build_version__ 15000100
+#define __apple_build_version__ 15000309
 #define __block __attribute__((__blocks__(byref)))
 #define __clang__ 1
 #define __clang_literal_encoding__ "UTF-8"
 #define __clang_major__ 15
 #define __clang_minor__ 0
 #define __clang_patchlevel__ 0
-#define __clang_version__ "15.0.0 (clang-1500.1.0.2.5)"
+#define __clang_version__ "15.0.0 (clang-1500.3.9.4)"
 #define __clang_wide_literal_encoding__ "UTF-32"
 #define __code_model_small__ 1
 #define __core2 1

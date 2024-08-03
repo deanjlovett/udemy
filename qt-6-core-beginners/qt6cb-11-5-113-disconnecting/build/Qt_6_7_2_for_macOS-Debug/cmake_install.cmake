@@ -1,4 +1,4 @@
-# Install script for directory: /Users/dean/Desktop/sdcs/github-projects/udemy/qt-6-core-beginners/qt6cb-11-5-113-disconnecting
+# Install script for directory: /Users/altdean/Desktop/github-projects/udemy/qt-6-core-beginners/qt6cb-11-5-113-disconnecting
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -38,11 +38,11 @@ if(NOT DEFINED CMAKE_OBJDUMP)
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE EXECUTABLE FILES "/Users/dean/Desktop/sdcs/github-projects/udemy/qt-6-core-beginners/qt6cb-11-5-113-disconnecting/build/Qt_6_7_2_for_macOS-Debug/qt6cb-11-5-113-disconnecting")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE EXECUTABLE FILES "/Users/altdean/Desktop/github-projects/udemy/qt-6-core-beginners/qt6cb-11-5-113-disconnecting/build/Qt_6_7_2_for_macOS-Debug/qt6cb-11-5-113-disconnecting")
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/qt6cb-11-5-113-disconnecting" AND
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/qt6cb-11-5-113-disconnecting")
     execute_process(COMMAND /usr/bin/install_name_tool
-      -delete_rpath "/Users/dean/Qt/6.7.2/macos/lib"
+      -delete_rpath "/Users/altdean/Qt/6.7.2/macos/lib"
       "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/qt6cb-11-5-113-disconnecting")
     if(CMAKE_INSTALL_DO_STRIP)
       execute_process(COMMAND "/usr/bin/strip" -u -r "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/qt6cb-11-5-113-disconnecting")
@@ -58,5 +58,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/Users/dean/Desktop/sdcs/github-projects/udemy/qt-6-core-beginners/qt6cb-11-5-113-disconnecting/build/Qt_6_7_2_for_macOS-Debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/Users/altdean/Desktop/github-projects/udemy/qt-6-core-beginners/qt6cb-11-5-113-disconnecting/build/Qt_6_7_2_for_macOS-Debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

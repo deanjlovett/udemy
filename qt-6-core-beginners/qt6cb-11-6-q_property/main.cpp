@@ -2,6 +2,9 @@
     What:
     Qt Property System
 
+    Qt Property Binding
+    Qt Property Bindings
+
     QML
 */
 

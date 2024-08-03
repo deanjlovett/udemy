@@ -1,5 +1,8 @@
 #include <QCoreApplication>
 
+#include "owner.h"
+#include "dog.h"
+
 int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
@@ -14,6 +17,18 @@ int main(int argc, char *argv[])
 
     // If you do not need a running Qt event loop, remove the call
     // to a.exec() or use the Non-Qt Plain C++ Application template.
+
+    Owner owner;
+    Dog dog;
+
+    QObject::connect(
+        &owner,
+        &Owner::treat,
+        &dog,
+        &Dog::treat
+    ); // default Auto
+
+    owner.giveTreat();
 
     return a.exec();
 }

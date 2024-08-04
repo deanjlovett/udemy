@@ -37,7 +37,7 @@ int main(int argc, char *argv[])
         Qt::QueuedConnection
     );
 
-    emit sendquit.PleaseQuitApp();
+    emit sendquit.PleaseQuitApp("Please quit the app.");
 
 
     return a.exec();

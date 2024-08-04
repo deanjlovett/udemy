@@ -7,5 +7,5 @@ SendQuitApp::SendQuitApp(QObject *parent) : QObject{parent}
 
 void SendQuitApp::RequestQuitApp(const QString &msg)
 {
-    emit PleaseQuitApp();
+    emit PleaseQuitApp(msg);
 }

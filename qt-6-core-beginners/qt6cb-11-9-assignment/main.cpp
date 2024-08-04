@@ -6,7 +6,7 @@
 
 int main(int argc, char *argv[])
 {
-    QCoreApplication a(argc, argv);
+    QCoreApplication qtapp(argc, argv);
 
     // Set up code that uses the Qt event loop here.
     // Call a.quit() or a.exit() to quit the application.
@@ -32,13 +32,16 @@ int main(int argc, char *argv[])
     QObject::connect(
         &sendquit,
         &SendQuitApp::PleaseQuitApp,
-        &a,
+        &qtapp,
         &QCoreApplication::quit,
-        Qt::QueuedConnection
+        Qt::QueuedConnection // qtapp is on different thread. we need a queued connection
     );
 
     emit sendquit.PleaseQuitApp("Please quit the app.");
 
 
-    return a.exec();
+    //return qtapp.exec();
+
+    int val = qtapp.exec();
+    qInfo() << "returned value from... int val = qtapp.exec(); : " << val;
 }
